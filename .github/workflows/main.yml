@@ -53,6 +53,7 @@ jobs:
         uses: rtCamp/action-slack-notify@master
         env:
           SLACK_CHANNEL: kdmw-release
+          SLACK_ICON: https://drive.google.com/file/d/1S8oCfEHwrfBlGWhh3mxrE58kDUQpn-Gb/view?usp=sharing
           SLACK_MESSAGE: "https://github.com/kkdm/kdmw/releases/download/${{ env.VERSION }}/static-files.zip"
           SLACK_TITLE: Release ${{ env.VERSION }}
           SLACK_USERNAME: machi
