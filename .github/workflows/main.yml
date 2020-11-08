@@ -58,3 +58,4 @@ jobs:
           SLACK_TITLE: Release ${{ env.VERSION }}
           SLACK_USERNAME: machi
           SLACK_WEBHOOK: ${{ secrets.MACHI_INCOMING_WEBHOOK }}
+          MSG_MINIMAL: true
