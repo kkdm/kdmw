@@ -35,8 +35,8 @@ jobs:
       - name: confirm
         run: ls -l
      
-#      - name: upload artifact
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: static-files
-#          key: 
+      - name: upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: static-files
+          path: build
