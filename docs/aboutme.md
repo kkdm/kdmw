@@ -22,3 +22,8 @@ This document is managed by kdm. It's me. I am DevOps engineer in Japan.
 ## YouTube
 
 My Camping Videos. [YouTube Channel](https://www.youtube.com/channel/UCHlSIlbli5Jr_sYSQrAnBvw)
+
+## Comments
+
+Comments are always welcome by using Github issue.
+[Kindly provide your comments here](https://github.com/kkdm/kdmw/issues)

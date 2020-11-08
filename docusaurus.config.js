@@ -16,7 +16,7 @@ module.exports = {
       items: [
         {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/kkdm',
+          href: 'https://github.com/kkdm/kdmw',
           label: 'GitHub',
           position: 'right',
         },
@@ -35,12 +35,12 @@ module.exports = {
 	  routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-            'https://github.com/kkdm/kdmw-docusaurus/tree/main/kdmw',
+            'https://github.com/kkdm/kdmw/tree/main/docs',
         },
         blog: {
           showReadingTime: true,
           editUrl:
-            'https://github.com/kkdm/kdmw-docusaurus/tree/main/kdmw/blog',
+            'https://github.com/kkdm/kdmw/tree/main/blog',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

@@ -1,3 +1,4 @@
 .docusaurus
 *.lock
 node_modules
+build
