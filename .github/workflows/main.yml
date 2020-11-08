@@ -59,3 +59,7 @@ jobs:
           SLACK_USERNAME: machi
           SLACK_WEBHOOK: ${{ secrets.MACHI_INCOMING_WEBHOOK }}
           MSG_MINIMAL: true
+
+      - name: run if fail_step failed
+        if: failure()
+        run: CI failed...
