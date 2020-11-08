@@ -62,4 +62,12 @@ jobs:
 
       - name: run if fail_step failed
         if: failure()
-        run: CI failed...
+        uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_CHANNEL: kdmw-release
+          SLACK_ICON: https://drive.google.com/file/d/1S8oCfEHwrfBlGWhh3mxrE58kDUQpn-Gb/view?usp=sharing
+          SLACK_MESSAGE: "https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}"
+          SLACK_TITLE: CI failed...
+          SLACK_USERNAME: machi
+          SLACK_WEBHOOK: ${{ secrets.MACHI_INCOMING_WEBHOOK }}
+          MSG_MINIMAL: true
