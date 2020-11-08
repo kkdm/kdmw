@@ -11,6 +11,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      
+      - name: install some packages
+        run: apk add zip
 
       - name: npm install
         run: npm install
