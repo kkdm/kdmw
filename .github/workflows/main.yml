@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      - name: Check version
+        run: git tag | grep "`cat version`" && echo 'version must be higher than current version' && exit 1
+
       - name: install some packages
         run: apk add zip
 
