@@ -10,12 +10,14 @@ jobs:
     container: node:15.1.0-alpine3.10
 
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      
       - name: install some packages
         run: apk add zip git
+
+      - name: checkout
+        run: git clone ${{ github.repository }}
+        
+      - name: check
+        run: ls -la
 
       - name: Check version
         run: git tag | grep "`cat version`" && echo 'version must be higher than current version' && exit 1
