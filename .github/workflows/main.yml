@@ -14,7 +14,7 @@ jobs:
         run: apk add zip git
 
       - name: checkout
-        run: git clone "https://github.com/${{ github.repository }}.git"
+        run: git clone "https://github.com/${{ github.repository }}.git" .
         
       - name: check
         run: ls -la
