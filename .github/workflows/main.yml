@@ -15,10 +15,11 @@ jobs:
       - name: install some packages
         run: apk add zip git
 
-      - name: get tags
-        run: git fetch --prune --unshallow --tags
+      - name: checkout
+        run: git clone "https://github.com/${{ github.repository }}.git" .
 
       - name: Check version
+        shell: bash
         run: |
           _VER=`cat version | egrep -o '[0-9]' | tr -d '\n'`
           _LAT=`git tag -n1 | egrep -o '[0-9]' | tr -d '\n'`
