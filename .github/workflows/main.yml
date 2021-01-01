@@ -10,8 +10,6 @@ jobs:
     container: node:15.1.0-alpine3.10
 
     steps:
-      - uses: actions/checkout@v2
-
       - name: install some packages
         run: apk add zip git
 
