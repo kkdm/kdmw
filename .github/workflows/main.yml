@@ -20,9 +20,6 @@ jobs:
         run: ls -la
 
       - name: Check version
-        run: git tag | grep "`cat version`" && echo 'version must be higher than current version' && exit 1
-
-      - name: Check version
         run: |
           _VER=`cat version | egrep -o '[0-9]' | tr -d '\n'`
           _LAT=`git tag -n1 | egrep -o '[0-9]' | tr -d '\n'`
