@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: install some packages
-        run: apk add zip git
+        run: apk add zip git bash
 
       - name: checkout
         run: git clone "https://github.com/${{ github.repository }}.git" .
