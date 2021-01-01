@@ -29,7 +29,7 @@ jobs:
         run: npm run build
 
       - name: zip
-        run: zip -r static-files.zip build
+        run: cd build; zip -r ../static-files.zip * 
 
       - name: Get version
         run: echo "VERSION=`cat version`" >> $GITHUB_ENV
