@@ -8,6 +8,9 @@ module.exports = {
       'docusaurus/disqus-integration',
       'docusaurus/use-env-in-conf'
     ],
-    HAProxy: ['haproxy/setup-with-prometheus-exporter'],
+    HAProxy: [
+      'haproxy/setup-with-prometheus-exporter',
+      'haproxy/logging-to-file'
+    ],
   },
 };
