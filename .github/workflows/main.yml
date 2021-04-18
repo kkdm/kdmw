@@ -5,79 +5,17 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  push_to_registry:
+    name: Push Docker image to GitHub Packages
     runs-on: ubuntu-latest
-    container: node:15.1.0-alpine3.10
-
     steps:
-      - name: install some packages
-        run: apk add zip git bash
-
-      - name: checkout
-        run: git clone "https://github.com/${{ github.repository }}.git" .
-
-      - name: Check version
-        shell: bash
-        run: |
-          _VER=`cat version | egrep -o '[0-9]' | tr -d '\n'`
-          _LAT=`git tag -n1 | head -n1 | egrep -o '[0-9]' | tr -d '\n'`
-          if ((_VER > _LAT)); then exit 0; else exit 1; fi
-
-      - name: npm install
-        run: npm install
-
-      - name: build
-        run: npm run build
-        env:
-          CLOUDFLARE_WEB_TOKEN: "${{ secrets.CLOUDFLARE_WEB_TOKEN }}"
-
-      - name: zip
-        run: cd build; zip -r ../static-files.zip * 
-
-      - name: Get version
-        run: echo "VERSION=`cat version`" >> $GITHUB_ENV
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
         with:
-          tag_name: ${{ env.VERSION }}
-          release_name: Release ${{ env.VERSION }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./static-files.zip
-          asset_name: static-files.zip
-          asset_content_type: application/zip
-          
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@master
-        env:
-          SLACK_CHANNEL: kdmw-release
-          SLACK_ICON: https://drive.google.com/file/d/1S8oCfEHwrfBlGWhh3mxrE58kDUQpn-Gb/view?usp=sharing
-          SLACK_MESSAGE: "https://github.com/kkdm/kdmw/releases/download/${{ env.VERSION }}/static-files.zip"
-          SLACK_TITLE: Release ${{ env.VERSION }}
-          SLACK_USERNAME: machi
-          SLACK_WEBHOOK: ${{ secrets.MACHI_INCOMING_WEBHOOK }}
-          MSG_MINIMAL: true
-
-      - name: run if fail_step failed
-        if: failure()
-        uses: rtCamp/action-slack-notify@master
-        env:
-          SLACK_CHANNEL: kdmw-release
-          SLACK_ICON: https://drive.google.com/file/d/1S8oCfEHwrfBlGWhh3mxrE58kDUQpn-Gb/view?usp=sharing
-          SLACK_MESSAGE: "https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}"
-          SLACK_TITLE: CI failed...
-          SLACK_USERNAME: machi
-          SLACK_WEBHOOK: ${{ secrets.MACHI_INCOMING_WEBHOOK }}
-          MSG_MINIMAL: true
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: ghcr.io
+          repository: kkdm/kdmw
+          tags: kkdm/kdmw:`cat package.json | jq -r .version`,kkdm/kdmw:latest

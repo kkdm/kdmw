@@ -1,8 +1,6 @@
-install:
-	npm install
-
+_VER=v`cat package.json | jq -r .version`
 build:
-	npm run build
+	docker build -t ghcr.io/kkdm/kdmw-site:$(_VER) .
 
-run:
-	npm run start
+push:
+	docker push ghcr.io/kkdm/kdmw-site:$(_VER)
