@@ -8,5 +8,6 @@ RUN npm install && \
     
 FROM nginx:1.18
 
-COPY --from=builder /build/build/* /usr/share/nginx/html/
+COPY --from=builder /build/build/ /usr/share/nginx/html/
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+
