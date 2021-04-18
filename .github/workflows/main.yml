@@ -22,4 +22,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           repository: kkdm/kdmw
-          tags: kkdm/kdmw:${{ env.VERSION }},kkdm/kdmw:latest
+          tags: ${{ env.VERSION }},latest
