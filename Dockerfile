@@ -8,6 +8,5 @@ RUN npm install && \
     
 FROM nginx:1.19
 
-USER 101
 COPY --from=builder /build/build/* /usr/share/nginx/html/
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
