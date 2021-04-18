@@ -4,3 +4,4 @@ build:
 
 push:
 	docker push ghcr.io/kkdm/kdmw-site:$(_VER)
+
